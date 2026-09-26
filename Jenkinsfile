@@ -45,9 +45,6 @@ pipeline {
             }
         }
         stage('Análisis Estático') {
-            tools {
-                jdk 'JDK21' // Debe coincidir con el nombre configurado en Jenkins Tools
-             }
             steps {
                 withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_TOKEN')]) {
                     sh 'mvn -B -U sonar:sonar -Dsonar.host.url=http://host.docker.internal:9000 -Dsonar.token=$SONAR_TOKEN'
