@@ -24,7 +24,13 @@ pipeline {
         }
         stage('Pruebas') {
             steps {
-                sh 'mvn -B test -Dmaven.test.failure.ignore=true'
+                sh 'mvn -B test'
+            }
+            post {
+                always {
+                    // Publica el informe de JUnit aunque haya pruebas fallidas
+                    junit 'target/surefire-reports/*.xml'
+                }
             }
         }
         stage('Empaquetar') {
