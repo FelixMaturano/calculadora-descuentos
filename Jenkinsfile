@@ -13,8 +13,8 @@ pipeline {
     }
 
     triggers {
-        //pollSCM('H/2 * * * *')
-        githubPush()
+        pollSCM('H/2 * * * *')
+        //githubPush()
     }
 
     stages {
