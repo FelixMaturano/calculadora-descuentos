@@ -26,4 +26,19 @@ public class CalculadoraDescuentos {
     private double redondear(double valor) {
         return Math.round(valor * 100) / 100.0;
     }
+
+    // Método nuevo añadido sin pruebas para bajar la cobertura
+    public double calcularDescuentoPorCantidad(int cantidad, double precioUnitario) {
+        if (cantidad <= 0 || precioUnitario <= 0) {
+            throw new IllegalArgumentException("Cantidad y precio deben ser mayores a cero");
+        }
+        if (cantidad >= 100) {
+            return precioUnitario * cantidad * 0.80;
+        } else if (cantidad >= 50) {
+            return precioUnitario * cantidad * 0.90;
+        } else if (cantidad >= 10) {
+            return precioUnitario * cantidad * 0.95;
+        }
+        return precioUnitario * cantidad;
+    }
 }

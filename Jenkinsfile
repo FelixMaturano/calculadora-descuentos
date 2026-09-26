@@ -33,6 +33,16 @@ pipeline {
                 }
             }
         }
+        stage('Cobertura') {
+            steps {
+                sh 'mvn -B verify'
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'target/site/jacoco/**', allowEmptyArchive: true
+                }
+            }
+        }
         stage('Empaquetar') {
             steps {
                 sh 'mvn -B -DskipTests package'
