@@ -65,4 +65,9 @@ class CalculadoraDescuentosTest {
     void descuentoPorCantidadInvalidoLanzaExcepcion() {
         assertThrows(IllegalArgumentException.class, () -> calculadora.calcularDescuentoPorCantidad(0, 10.0));
     }
+    @Test
+    void pruebaTddFalloIntencional() {
+        // Afirmación falsa a propósito para forzar el fallo en TDD
+        org.junit.jupiter.api.Assertions.assertEquals(100.0, 50.0, 0.001);
+    }
 }
