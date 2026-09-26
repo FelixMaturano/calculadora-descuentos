@@ -53,4 +53,16 @@ class CalculadoraDescuentosTest {
                 () -> calculadora.calcularPrecioFinal(precio, 10));
         assertEquals("El precio original debe ser mayor que cero", e.getMessage());
     }
+    @Test
+    void descuentoPorCantidadAplicaCorrectamente() {
+        assertEquals(95.0, calculadora.calcularDescuentoPorCantidad(10, 10.0), 0.001);
+        assertEquals(450.0, calculadora.calcularDescuentoPorCantidad(50, 10.0), 0.001);
+        assertEquals(800.0, calculadora.calcularDescuentoPorCantidad(100, 10.0), 0.001);
+        assertEquals(50.0, calculadora.calcularDescuentoPorCantidad(5, 10.0), 0.001);
+    }
+
+    @Test
+    void descuentoPorCantidadInvalidoLanzaExcepcion() {
+        assertThrows(IllegalArgumentException.class, () -> calculadora.calcularDescuentoPorCantidad(0, 10.0));
+    }
 }
